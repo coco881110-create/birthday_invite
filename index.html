@@ -11,14 +11,14 @@
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
 :root {
-  --burg:   #6B1A2A;
-  --burg-d: #3E0E18;
-  --burg-m: #7F2236;
-  --cream:  #F6F1E7;
-  --cream-d:#EDE5D4;
-  --gold:   #C9A96E;
-  --gold-l: #E3C98A;
-  --text:   #2A1212;
+  --burg:    #6B1A2A;
+  --burg-d:  #3E0E18;
+  --burg-m:  #7F2236;
+  --cream:   #F6F1E7;
+  --cream-d: #EDE5D4;
+  --gold:    #C9A96E;
+  --gold-l:  #E3C98A;
+  --text:    #2A1212;
   --env-scale: 1;
   --card-zoom: 1;
 }
@@ -110,7 +110,7 @@ body::before {
 .env-scene.opened .card-peek      { transform:translateY(-148px); }
 .env-scene.opened .card-peek-text { opacity:1; }
 .env-scene.opened .card-peek-name { opacity:1; }
-.env-scene.opened .flap-group     { transform:rotateX(-178deg); }
+.env-scene.opened .flap-group      { transform:rotateX(-178deg); }
 .env-scene.opened .hint           { opacity:0!important; animation:none!important; }
 
 /* ── Invitation overlay ── */
@@ -181,7 +181,7 @@ body::before {
 .overlay.active .i-row:nth-child(24) { animation:fu .55s ease forwards; animation-delay:1.88s; }
 .overlay.active .i-row:nth-child(25) { animation:fu .55s ease forwards; animation-delay:1.94s; }
 .overlay.active .i-row:nth-child(26) { animation:fu .55s ease forwards; animation-delay:2.00s; }
-.overlay.active .i-close             { animation:fu .55s ease forwards; animation-delay:2.06s; }
+.overlay.active .i-close              { animation:fu .55s ease forwards; animation-delay:2.06s; }
 @keyframes fu { from{opacity:0;transform:translateY(11px)} to{opacity:1;transform:translateY(0)} }
 
 .i-close {
@@ -195,8 +195,7 @@ body::before {
 
 
 /* ═══════════════════════════════════════════════════════
-   彩 蛋 ── 暗信美學
-   文字漂浮於黑暗，打字機書寫 YU 的專屬段落
+   彩 蛋 ── 暗信美學（已修正關閉隱藏問題）
    ═══════════════════════════════════════════════════════ */
 
 /* 關閉按鈕：fixed 於視窗右上，不隨內容滾動 */
@@ -214,18 +213,21 @@ body::before {
 #eggDismiss.visible { opacity:1; pointer-events:all; color:rgba(201,169,110,.28); }
 #eggDismiss.visible:hover { color:rgba(201,169,110,.72); }
 
-/* 全螢幕暗幕 */
+/* 全螢幕暗幕：修正為整體 opacity 與 visibility 控制 */
 .egg-overlay {
   position:fixed; inset:0; z-index:100;
-  background:rgba(6,1,3,0);
+  background:rgba(6,1,3,.97);
   display:flex; align-items:center; justify-content:center;
   overflow-y:auto; pointer-events:none;
-  transition:background 1.4s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.4s ease, visibility 1.4s ease;
   padding:60px 28px;
 }
 .egg-overlay.active {
-  background:rgba(6,1,3,.97);
   pointer-events:all;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 中心發光暈 — 讓文字區域有隱約溫度 */
@@ -315,25 +317,25 @@ body::before {
       <svg class="env-svg" viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="gBack" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#3E0E18"/>
-            <stop offset="50%"  stop-color="#6B1A2A"/>
+            <stop offset="0%"    stop-color="#3E0E18"/>
+            <stop offset="50%"   stop-color="#6B1A2A"/>
             <stop offset="100%" stop-color="#7F2236"/>
           </linearGradient>
           <linearGradient id="gLeft" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#300B12"/>
+            <stop offset="0%"    stop-color="#300B12"/>
             <stop offset="100%" stop-color="#7F2236"/>
           </linearGradient>
           <linearGradient id="gRight" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#7F2236"/>
+            <stop offset="0%"    stop-color="#7F2236"/>
             <stop offset="100%" stop-color="#300B12"/>
           </linearGradient>
           <linearGradient id="gBot" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#6B1A2A"/>
+            <stop offset="0%"    stop-color="#6B1A2A"/>
             <stop offset="100%" stop-color="#280910"/>
           </linearGradient>
           <linearGradient id="gFlap" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#8B2A3A"/>
-            <stop offset="55%"  stop-color="#6B1A2A"/>
+            <stop offset="0%"    stop-color="#8B2A3A"/>
+            <stop offset="55%"   stop-color="#6B1A2A"/>
             <stop offset="100%" stop-color="#3E0E18"/>
           </linearGradient>
           <filter id="envShad" x="-12%" y="-8%" width="124%" height="138%">
@@ -383,7 +385,6 @@ body::before {
   </div>
 </div>
 
-<!-- Invitation overlay -->
 <div class="overlay" id="overlay">
   <div class="inv-card">
     <button class="i-close" onclick="closeInv()">✕</button>
@@ -421,7 +422,7 @@ body::before {
     <div class="i-row i-hr"></div>
     <div class="i-row i-lbl">RSVP · 聯繫人</div>
     <div class="i-row i-contact">
-      X（Twitter）&nbsp;｜&nbsp;<a href="https://x.com/coco43561" target="_blank">@coco43561</a>
+      X（Twitter） ｜ <a href="https://x.com/coco43561" target="_blank">@coco43561</a>
     </div>
     <div class="i-row i-contact" style="margin-bottom:8px;">
       敬請於 1 月 10 日前回覆 · Kindly reply by Jan 10
@@ -432,18 +433,11 @@ body::before {
 </div>
 
 
-<!-- ═══════════════════════════════════════════
-     彩蛋關閉鈕：fixed 於視窗，不隨頁面滾動
-     ═══════════════════════════════════════════ -->
 <button id="eggDismiss" onclick="closeEgg()">✕</button>
 
-<!-- ═══════════════════════════════════════════
-     彩蛋暗幕：開啟邀請函 60 秒後無聲出現
-     ═══════════════════════════════════════════ -->
 <div class="egg-overlay" id="eggOverlay">
   <div class="egg-col" id="eggCol">
 
-    <!-- 頂部菱形印記，與信封主視覺同語彙 -->
     <svg class="egg-seal" id="eggSeal" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
       <polygon points="19,1 37,19 19,37 1,19"
                fill="none" stroke="rgba(201,169,110,.5)" stroke-width=".8"/>
@@ -452,7 +446,6 @@ body::before {
       <circle cx="19" cy="19" r="1.8" fill="rgba(201,169,110,.48)"/>
     </svg>
 
-    <!-- Coco 給各位的話（逐行淡入） -->
     <div class="egg-gl" id="eg1">嗨！我是可可，想不到有彩蛋唄！</div>
     <div class="egg-gl" id="eg2" style="margin-top:6px;">這次的活動，我希望 YU 能夠幸福開心地度過，</div>
     <div class="egg-gl" id="eg3" style="margin-bottom:14px;">所以就別折磨他了吧（燦笑</div>
@@ -461,18 +454,14 @@ body::before {
     <div class="egg-gl" id="eg6">最後，這幾句是我要跟他說的，</div>
     <div class="egg-gl" id="eg7">就讓你們一起參與吧 :)</div>
 
-    <!-- 分隔線：從中心向外延展 -->
     <div class="egg-rule" id="eggRule"></div>
 
-    <!-- YU 的名字 -->
     <div class="egg-yu" id="eggYu">YU</div>
 
-    <!-- 打字機三行 -->
     <div class="egg-tw" id="tw1"></div>
     <div class="egg-tw" id="tw2"></div>
     <div class="egg-tw" id="tw3"></div>
 
-    <!-- 署名 -->
     <div class="egg-sig" id="eggSig">— 可可</div>
 
   </div>
@@ -537,7 +526,7 @@ function showInv() {
   document.getElementById('overlay').classList.add('active');
   /* 開啟後啟動 60 秒彩蛋計時（只觸發一次）*/
   if (!eggTimer && !eggShown) {
-    eggTimer = setTimeout(showEgg, 60000);
+    eggTimer = setTimeout(showEgg, 10000);
   }
 }
 function closeInv() {
@@ -547,7 +536,6 @@ function closeInv() {
     opened = false;
     document.getElementById('envScene').classList.remove('opened');
   }, 450);
-  /* 計時器繼續，不因關閉邀請函而中斷 */
 }
 function toggleMusic() {
   const b = document.getElementById('mBtn');
@@ -559,11 +547,11 @@ function toggleMusic() {
 }
 
 /* ══════════════════════════════════════════
-   彩 蛋 系統
+   彩 蛋 系統（已修復重置與文字隱藏問題）
    ══════════════════════════════════════════ */
 let eggTimer    = null;
 let eggShown    = false;
-let eggActive   = false;
+let eggActive    = false;
 let eggTimeouts = [];   // 收集所有 setTimeout ID，便於 closeEgg 時全清
 let twIntervals = [];   // 收集打字機 setInterval ID
 
@@ -641,13 +629,31 @@ function showEgg() {
   }, 6000);
 }
 
-/* 關閉彩蛋，清除所有計時器與打字機 */
+/* 關閉彩蛋，清除所有計時器並在淡出後完整重置內部文字狀態 */
 function closeEgg() {
   eggActive = false;
   eggTimeouts.forEach(clearTimeout);  eggTimeouts = [];
   twIntervals.forEach(clearInterval); twIntervals = [];
   document.getElementById('eggOverlay').classList.remove('active');
   document.getElementById('eggDismiss').classList.remove('visible');
+  
+  // 於容器淡出（1.4秒）播放時或結束後重置所有內部元素的 CSS 與 HTML，保證畫面絕對乾淨
+  setTimeout(() => {
+    if (!eggActive) {
+      document.getElementById('eggSeal').style.animation = '';
+      ['eg1','eg2','eg3','eg4','eg5','eg6','eg7'].forEach(id => {
+        document.getElementById(id).style.animation = '';
+      });
+      document.getElementById('eggRule').classList.remove('expand');
+      document.getElementById('eggYu').style.animation = '';
+      ['tw1','tw2','tw3'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('on');
+        el.innerHTML = '';
+      });
+      document.getElementById('eggSig').style.animation = '';
+    }
+  }, 1400);
 }
 
 /* ── Mobile touch fixes ── */
