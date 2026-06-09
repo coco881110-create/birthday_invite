@@ -36,7 +36,6 @@ body::before {
   pointer-events:none;
 }
 
-/* Particles */
 .particles { position:fixed; inset:0; pointer-events:none; z-index:1; }
 .p {
   position:absolute; background:var(--gold); border-radius:50%; opacity:0;
@@ -49,7 +48,6 @@ body::before {
   100%{ transform:translateY(-5vh); opacity:0; }
 }
 
-/* Top UI */
 .brand-top {
   position:fixed; top:20px; left:50%; transform:translateX(-50%);
   font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.5em;
@@ -64,23 +62,15 @@ body::before {
 }
 .music-btn:hover { background:rgba(201,169,110,0.08); color:var(--gold); }
 
-/* Stage */
 .stage {
   position:relative; z-index:10;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   width:100vw; height:100vh;
 }
 
-/* ── Proportional scale wrapper ──
-   FIX: use `zoom` instead of `transform:scale()`.
-   `zoom` scales both the visual AND the layout/hit-test box together,
-   which fixes the iOS Safari touch-area mismatch caused by transform. */
 .env-scaler {
-  display:inline-flex;
-  flex-direction:column;
-  align-items:center;
-  zoom: var(--env-scale);
-  cursor:pointer;
+  display:inline-flex; flex-direction:column; align-items:center;
+  zoom: var(--env-scale); cursor:pointer;
 }
 
 .env-scene {
@@ -88,25 +78,18 @@ body::before {
   animation:enterScene 1.1s cubic-bezier(.16,1,.3,1) both;
   animation-delay:.4s;
   display:flex; flex-direction:column; align-items:center;
-  /* Mobile touch fixes */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  user-select: none;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  user-select:none;
 }
 @keyframes enterScene {
   from { opacity:0; transform:translateY(60px) scale(.9); }
   to   { opacity:1; transform:translateY(0)    scale(1); }
 }
 
-.env-svg {
-  display:block; width:420px; height:280px;
-  position:relative; z-index:5; overflow:visible; pointer-events:none;
-}
+.env-svg { display:block; width:420px; height:280px; position:relative; z-index:5; overflow:visible; pointer-events:none; }
 
-.env-body-clip {
-  position:absolute; top:62px; left:42px; right:42px;
-  height:206px; overflow:hidden; z-index:3; pointer-events:none;
-}
+.env-body-clip { position:absolute; top:62px; left:42px; right:42px; height:206px; overflow:hidden; z-index:3; pointer-events:none; }
 
 .card-peek {
   position:absolute; left:0; right:0; bottom:0; height:192px;
@@ -115,31 +98,13 @@ body::before {
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   transition:transform 1.1s cubic-bezier(.16,1,.3,1); transition-delay:.25s; overflow:hidden;
 }
-.card-peek::before {
-  content:''; position:absolute; inset:9px;
-  border:.5px solid rgba(201,169,110,.26); pointer-events:none;
-}
-.card-peek-text {
-  font-style:italic; font-size:14px; color:var(--text);
-  letter-spacing:.06em; text-align:center; line-height:2;
-  opacity:0; transition:opacity .7s ease; transition-delay:1s;
-}
-.card-peek-name {
-  font-family:'Cinzel',serif; font-size:18px; font-weight:300;
-  color:var(--burg-d); letter-spacing:.25em; margin-top:4px;
-  opacity:0; transition:opacity .7s ease; transition-delay:1.15s;
-}
+.card-peek::before { content:''; position:absolute; inset:9px; border:.5px solid rgba(201,169,110,.26); pointer-events:none; }
+.card-peek-text { font-style:italic; font-size:14px; color:var(--text); letter-spacing:.06em; text-align:center; line-height:2; opacity:0; transition:opacity .7s ease; transition-delay:1s; }
+.card-peek-name { font-family:'Cinzel',serif; font-size:18px; font-weight:300; color:var(--burg-d); letter-spacing:.25em; margin-top:4px; opacity:0; transition:opacity .7s ease; transition-delay:1.15s; }
 
-.flap-group {
-  transform-origin:50% 0%; transform-box:fill-box;
-  transition:transform 1s cubic-bezier(.4,0,.2,1);
-}
+.flap-group { transform-origin:50% 0%; transform-box:fill-box; transition:transform 1s cubic-bezier(.4,0,.2,1); }
 
-.hint {
-  margin-top:16px; font-style:italic; font-size:12px;
-  color:rgba(201,169,110,.48); letter-spacing:.2em;
-  opacity:0; animation:pulse 3s ease-in-out infinite;
-}
+.hint { margin-top:16px; font-style:italic; font-size:12px; color:rgba(201,169,110,.48); letter-spacing:.2em; opacity:0; animation:pulse 3s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.85} }
 
 .env-scene.opened .card-peek      { transform:translateY(-148px); }
@@ -159,8 +124,7 @@ body::before {
 .overlay.active { background:rgba(10,3,6,.93); pointer-events:all; }
 
 .inv-card {
-  position:relative;
-  width:340px; max-width:92vw; flex-shrink:0;
+  position:relative; width:340px; max-width:92vw; flex-shrink:0;
   background:linear-gradient(165deg,#FEFCF8 0%,var(--cream) 60%,var(--cream-d) 100%);
   padding:26px 28px 24px;
   box-shadow:0 40px 100px rgba(0,0,0,.55);
@@ -173,9 +137,7 @@ body::before {
 .inv-card::before { content:''; position:absolute; inset:11px; border:.5px solid rgba(201,169,110,.34); pointer-events:none; }
 .inv-card::after  { content:''; position:absolute; inset:15px; border:.5px solid rgba(201,169,110,.12); pointer-events:none; }
 
-/* Content rows */
 .i-row { text-align:center; opacity:0; }
-
 .i-orn     { font-size:11px; color:var(--gold); letter-spacing:.6em; margin-bottom:7px; }
 .i-sub     { font-family:'Cinzel',serif; font-size:8px; letter-spacing:.45em; color:rgba(107,26,42,.48); text-transform:uppercase; margin-bottom:5px; }
 .i-sub-zh  { font-family:'Noto Serif TC',serif; font-size:8px; letter-spacing:.3em; color:rgba(107,26,42,.38); margin-bottom:8px; }
@@ -190,15 +152,10 @@ body::before {
 .i-contact { font-family:'Noto Serif TC',serif; font-size:10.5px; color:rgba(42,18,18,.55); margin-bottom:3px; letter-spacing:.08em; }
 .i-contact a { color:var(--burg); text-decoration:none; }
 .i-contact a:hover { text-decoration:underline; }
-.i-map-link {
-  display:inline-block; margin-top:3px;
-  font-family:'Noto Serif TC',serif; font-size:9.5px; letter-spacing:.06em;
-  color:var(--burg); text-decoration:none; opacity:.8; transition:opacity .3s;
-}
+.i-map-link { display:inline-block; margin-top:3px; font-family:'Noto Serif TC',serif; font-size:9.5px; letter-spacing:.06em; color:var(--burg); text-decoration:none; opacity:.8; transition:opacity .3s; }
 .i-map-link:hover { opacity:1; text-decoration:underline; }
 .i-brand { font-family:'Cinzel',serif; font-size:8px; letter-spacing:.5em; color:rgba(107,26,42,.36); margin-top:3px; text-transform:uppercase; }
 
-/* ── Stagger reveal ── */
 .overlay.active .i-row:nth-child(2)  { animation:fu .55s ease forwards; animation-delay:.36s; }
 .overlay.active .i-row:nth-child(3)  { animation:fu .55s ease forwards; animation-delay:.46s; }
 .overlay.active .i-row:nth-child(4)  { animation:fu .55s ease forwards; animation-delay:.55s; }
@@ -235,6 +192,114 @@ body::before {
   touch-action:manipulation;
 }
 .i-close:hover { color:var(--burg); }
+
+
+/* ═══════════════════════════════════════════════════════
+   彩 蛋 ── 暗信美學
+   文字漂浮於黑暗，打字機書寫 YU 的專屬段落
+   ═══════════════════════════════════════════════════════ */
+
+/* 關閉按鈕：fixed 於視窗右上，不隨內容滾動 */
+#eggDismiss {
+  position:fixed; top:24px; right:28px; z-index:101;
+  background:none; border:none; cursor:pointer;
+  font-family:'Cinzel',serif; font-size:8px; letter-spacing:.45em;
+  text-transform:uppercase;
+  color:rgba(201,169,110,0);
+  padding:10px 16px;
+  transition:color .7s, opacity .7s;
+  opacity:0; pointer-events:none;
+  touch-action:manipulation;
+}
+#eggDismiss.visible { opacity:1; pointer-events:all; color:rgba(201,169,110,.28); }
+#eggDismiss.visible:hover { color:rgba(201,169,110,.72); }
+
+/* 全螢幕暗幕 */
+.egg-overlay {
+  position:fixed; inset:0; z-index:100;
+  background:rgba(6,1,3,0);
+  display:flex; align-items:center; justify-content:center;
+  overflow-y:auto; pointer-events:none;
+  transition:background 1.4s ease;
+  padding:60px 28px;
+}
+.egg-overlay.active {
+  background:rgba(6,1,3,.97);
+  pointer-events:all;
+}
+
+/* 中心發光暈 — 讓文字區域有隱約溫度 */
+.egg-overlay::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(ellipse 55% 65% at 50% 50%,
+    rgba(62,14,24,.18) 0%, transparent 70%);
+  opacity:0; transition:opacity 2s ease 1s;
+}
+.egg-overlay.active::before { opacity:1; }
+
+/* 主內容欄：文字自由漂浮，無框無卡 */
+.egg-col {
+  position:relative; z-index:1;
+  max-width:290px; width:100%;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+/* 頂部菱形印記 SVG */
+.egg-seal { opacity:0; margin-bottom:28px; }
+
+/* 給訪客的段落 */
+.egg-gl {
+  font-family:'Noto Serif TC',serif; font-size:12.5px; line-height:2.1;
+  color:rgba(235,222,202,.72); text-align:center;
+  opacity:0; letter-spacing:.04em;
+}
+
+/* 分隔線：從中心向兩側延展 */
+.egg-rule {
+  width:0; height:.5px; margin:30px auto;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition:width 1.3s cubic-bezier(.4,0,.2,1);
+}
+.egg-rule.expand { width:100%; }
+
+/* YU 的名字 */
+.egg-yu {
+  font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic;
+  font-size:clamp(38px,10vw,50px); line-height:1;
+  color:rgba(227,201,138,.82); letter-spacing:.2em;
+  opacity:0; margin-bottom:22px;
+}
+
+/* 打字機行 */
+.egg-tw {
+  font-family:'Noto Serif TC',serif; font-size:12.5px; line-height:2.1;
+  color:rgba(245,235,215,.85); font-style:italic;
+  text-align:center; min-height:1.6em; width:100%;
+  opacity:0; letter-spacing:.04em;
+}
+.egg-tw.on { opacity:1; }
+
+/* 打字游標 */
+.egg-cursor {
+  display:inline-block; width:1.5px; height:.9em;
+  background:rgba(201,169,110,.75);
+  margin-left:1px; vertical-align:text-bottom;
+  animation:blink .65s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* 署名 */
+.egg-sig {
+  font-family:'Cormorant Garamond',serif; font-weight:300; font-style:italic;
+  font-size:18px; color:rgba(201,169,110,.55);
+  opacity:0; margin-top:28px; letter-spacing:.12em;
+}
+
+/* 共用 keyframe：從略下方淡入 */
+@keyframes eggUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 </style>
 </head>
 <body>
@@ -244,7 +309,6 @@ body::before {
 <button class="music-btn" id="mBtn" onclick="toggleMusic()">♪ Music</button>
 
 <div class="stage">
-  <!-- env-scaler: uses zoom (not transform) for correct mobile touch hit-testing -->
   <div class="env-scaler" id="envScaler">
     <div class="env-scene" id="envScene" onclick="openEnv()">
 
@@ -323,7 +387,6 @@ body::before {
 <div class="overlay" id="overlay">
   <div class="inv-card">
     <button class="i-close" onclick="closeInv()">✕</button>
-
     <div class="i-row i-orn">— ✦ —</div>
     <div class="i-row i-sub">You are warmly invited</div>
     <div class="i-row i-sub-zh">誠摯邀請您蒞臨</div>
@@ -368,36 +431,72 @@ body::before {
   </div>
 </div>
 
+
+<!-- ═══════════════════════════════════════════
+     彩蛋關閉鈕：fixed 於視窗，不隨頁面滾動
+     ═══════════════════════════════════════════ -->
+<button id="eggDismiss" onclick="closeEgg()">✕</button>
+
+<!-- ═══════════════════════════════════════════
+     彩蛋暗幕：開啟邀請函 60 秒後無聲出現
+     ═══════════════════════════════════════════ -->
+<div class="egg-overlay" id="eggOverlay">
+  <div class="egg-col" id="eggCol">
+
+    <!-- 頂部菱形印記，與信封主視覺同語彙 -->
+    <svg class="egg-seal" id="eggSeal" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="19,1 37,19 19,37 1,19"
+               fill="none" stroke="rgba(201,169,110,.5)" stroke-width=".8"/>
+      <polygon points="19,7 31,19 19,31 7,19"
+               fill="none" stroke="rgba(201,169,110,.24)" stroke-width=".6"/>
+      <circle cx="19" cy="19" r="1.8" fill="rgba(201,169,110,.48)"/>
+    </svg>
+
+    <!-- Coco 給各位的話（逐行淡入） -->
+    <div class="egg-gl" id="eg1">嗨！我是可可，想不到有彩蛋唄！</div>
+    <div class="egg-gl" id="eg2" style="margin-top:6px;">這次的活動，我希望 YU 能夠幸福開心地度過，</div>
+    <div class="egg-gl" id="eg3" style="margin-bottom:14px;">所以就別折磨他了吧（燦笑</div>
+    <div class="egg-gl" id="eg4">也算是我求求各位囉，當天我不會送禮物，</div>
+    <div class="egg-gl" id="eg5" style="margin-bottom:14px;">請各位放心，安心的來吧！！</div>
+    <div class="egg-gl" id="eg6">最後，這幾句是我要跟他說的，</div>
+    <div class="egg-gl" id="eg7">就讓你們一起參與吧 :)</div>
+
+    <!-- 分隔線：從中心向外延展 -->
+    <div class="egg-rule" id="eggRule"></div>
+
+    <!-- YU 的名字 -->
+    <div class="egg-yu" id="eggYu">YU</div>
+
+    <!-- 打字機三行 -->
+    <div class="egg-tw" id="tw1"></div>
+    <div class="egg-tw" id="tw2"></div>
+    <div class="egg-tw" id="tw3"></div>
+
+    <!-- 署名 -->
+    <div class="egg-sig" id="eggSig">— 可可</div>
+
+  </div>
+</div>
+
+
 <audio id="audio" loop>
 <source src="https://filedn.com/lKRqHtRTAHxQcFATGzPDkwR/Joe%20Hisaishi%20-%20Summer%20-%20JoeHisaishiVEVO.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* ── Proportional scaling ──
-   FIX: zoom (not transform) is used on .env-scaler via CSS variable --env-scale.
-   This ensures touch hit-areas match the visual on iOS Safari / Android Chrome.
-   Smaller multipliers (0.70 / 0.62) make the envelope less dominant on screen. */
+/* ── Proportional scaling ── */
 function applyScale() {
   const vw = window.innerWidth, vh = window.innerHeight;
-
-  // Envelope: fill ~70% of width or 62% of height, whichever is smaller; cap at 1.3×
   const envScale = +Math.max(0.45, Math.min(
-    (vw * 0.70) / 420,
-    (vh * 0.62) / 310,
-    1.3
+    (vw * 0.70) / 420, (vh * 0.62) / 310, 1.3
   )).toFixed(3);
-
-  // Card: scale up on large screens; stay at 1× on mobile
   const cardZoom = +Math.max(1.0, Math.min(
-    (vw * 0.85) / 360,
-    (vh * 0.88) / 580,
-    1.65
+    (vw * 0.85) / 360, (vh * 0.88) / 580, 1.65
   )).toFixed(3);
-
   document.documentElement.style.setProperty('--env-scale', envScale);
   document.documentElement.style.setProperty('--card-zoom', cardZoom);
 }
-applyScale();                                  // run before first paint
+applyScale();
 window.addEventListener('resize', applyScale);
 
 /* ── Particles ── */
@@ -436,6 +535,10 @@ function openEnv() {
 function showInv() {
   shown = true;
   document.getElementById('overlay').classList.add('active');
+  /* 開啟後啟動 60 秒彩蛋計時（只觸發一次）*/
+  if (!eggTimer && !eggShown) {
+    eggTimer = setTimeout(showEgg, 60000);
+  }
 }
 function closeInv() {
   document.getElementById('overlay').classList.remove('active');
@@ -444,6 +547,7 @@ function closeInv() {
     opened = false;
     document.getElementById('envScene').classList.remove('opened');
   }, 450);
+  /* 計時器繼續，不因關閉邀請函而中斷 */
 }
 function toggleMusic() {
   const b = document.getElementById('mBtn');
@@ -454,14 +558,108 @@ function toggleMusic() {
   }
 }
 
-/* ── Mobile touch fix ──
-   touchend with preventDefault() fires before the synthesised click,
-   so openEnv() runs reliably on iOS Safari / Android without delay.
-   The existing onclick on envScene still handles desktop mice. */
+/* ══════════════════════════════════════════
+   彩 蛋 系統
+   ══════════════════════════════════════════ */
+let eggTimer    = null;
+let eggShown    = false;
+let eggActive   = false;
+let eggTimeouts = [];   // 收集所有 setTimeout ID，便於 closeEgg 時全清
+let twIntervals = [];   // 收集打字機 setInterval ID
+
+/* 帶守衛的 setTimeout：若 egg 已關閉，callback 不執行 */
+function eg(fn, ms) {
+  const id = setTimeout(() => { if (eggActive) fn(); }, ms);
+  eggTimeouts.push(id);
+}
+
+/* 打字機：字元逐個插入，結束後呼叫 onDone */
+function typewrite(elId, text, speed, onDone) {
+  const el = document.getElementById(elId);
+  el.classList.add('on');
+  el.innerHTML = '<span class="egg-cursor"></span>';
+  const cursor = el.querySelector('.egg-cursor');
+  let i = 0;
+  const iv = setInterval(() => {
+    if (!eggActive) { clearInterval(iv); return; }
+    if (i < text.length) {
+      el.insertBefore(document.createTextNode(text[i++]), cursor);
+    } else {
+      clearInterval(iv);
+      cursor.remove();
+      if (onDone) onDone();
+    }
+  }, speed);
+  twIntervals.push(iv);
+}
+
+/* 主展演序列 */
+function showEgg() {
+  eggShown  = true;
+  eggActive = true;
+  document.getElementById('eggOverlay').classList.add('active');
+
+  /* 關閉鈕稍後淡入 */
+  eg(() => document.getElementById('eggDismiss').classList.add('visible'), 900);
+
+  /* 菱形印記 */
+  eg(() => {
+    document.getElementById('eggSeal').style.animation = 'eggUp .9s ease forwards';
+  }, 700);
+
+  /* 給訪客的七行，每行間隔漸增，製造閱讀節奏 */
+  const gLines = ['eg1','eg2','eg3','eg4','eg5','eg6','eg7'];
+  const gDelay = [1200, 1650, 1980, 2450, 2780, 3230, 3560];
+  gLines.forEach((id, i) => eg(() => {
+    document.getElementById(id).style.animation = 'eggUp .75s ease forwards';
+  }, gDelay[i]));
+
+  /* 金線從中心向兩側展開 */
+  eg(() => document.getElementById('eggRule').classList.add('expand'), 4150);
+
+  /* YU 名字 */
+  eg(() => {
+    document.getElementById('eggYu').style.animation = 'eggUp 1.1s ease forwards';
+  }, 5200);
+
+  /* 打字機鏈：line1 → line2 → line3 → 署名 */
+  eg(() => {
+    typewrite('tw1', '感謝你，我很愛你呦，未來還請多多指教！', 68, () => {
+      eg(() => {
+        typewrite('tw2', '那天你跟我說的那些，我並沒有打算放手！', 68, () => {
+          eg(() => {
+            typewrite('tw3', '這是你要承受的，吞下去唄！（壞笑', 72, () => {
+              /* 打字結束，署名淡入 */
+              eg(() => {
+                document.getElementById('eggSig').style.animation = 'eggUp 1s ease forwards';
+              }, 500);
+            });
+          }, 360);
+        });
+      }, 360);
+    });
+  }, 6000);
+}
+
+/* 關閉彩蛋，清除所有計時器與打字機 */
+function closeEgg() {
+  eggActive = false;
+  eggTimeouts.forEach(clearTimeout);  eggTimeouts = [];
+  twIntervals.forEach(clearInterval); twIntervals = [];
+  document.getElementById('eggOverlay').classList.remove('active');
+  document.getElementById('eggDismiss').classList.remove('visible');
+}
+
+/* ── Mobile touch fixes ── */
 document.getElementById('envScene').addEventListener('touchend', function(e) {
-  e.preventDefault();   // stop the 300ms click delay & double-fire
+  e.preventDefault();
   openEnv();
-}, { passive: false });
+}, { passive:false });
+
+document.getElementById('eggDismiss').addEventListener('touchend', function(e) {
+  e.preventDefault();
+  closeEgg();
+}, { passive:false });
 </script>
 </body>
 </html>
