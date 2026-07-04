@@ -526,7 +526,7 @@ function showInv() {
   document.getElementById('overlay').classList.add('active');
   /* 開啟後啟動 60 秒彩蛋計時（只觸發一次）*/
   if (!eggTimer && !eggShown) {
-    eggTimer = setTimeout(showEgg, 10000);
+    eggTimer = setTimeout(showEgg, 30000);
   }
 }
 function closeInv() {
