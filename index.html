@@ -637,7 +637,7 @@ function closeEgg() {
   twIntervals.forEach(clearInterval); twIntervals = [];
   document.getElementById('eggOverlay').classList.remove('active');
   document.getElementById('eggDismiss').classList.remove('visible');
-   
+  
   // 於容器淡出（1.4秒）播放時或結束後重置所有內部元素的 CSS 與 HTML，保證畫面絕對乾淨
   setTimeout(() => {
     if (!eggActive) {
